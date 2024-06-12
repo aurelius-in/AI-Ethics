@@ -1,4 +1,59 @@
-    10px;
+    /* Reset some default styles */
+body, h1, h2, p, input, button, div, label, ul, li, textarea {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #282c34, #3b3f47);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background: #3b3f47;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    overflow-y: auto;
+    max-height: 90vh; /* Ensure it fits within the screen */
+}
+
+.banner {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #61dafb;
+}
+
+.section {
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    width: 100%;
+    margin-bottom: 10px;
     font-size: 1.2em;
     text-align: left;
 }
