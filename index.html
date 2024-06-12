@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Ethics and Compliance Checker</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <img src="compliance-banner.jpg" alt="AI Ethics and Compliance Checker" class="banner">
+        
+        <div class="section">
+            <h2>Ethics and Compliance Checklist</h2>
+            <form id="checklist-form">
+                <div id="checklist-items">
+                    <!-- Default checklist items -->
+                    <label><input type="checkbox" id="data-privacy"> Data Privacy</label>
+                    <label><input type="checkbox" id="bias-mitigation"> Bias Mitigation</label>
+                    <label><input type="checkbox" id="transparency"> Transparency</label>
+                    <label><input type="checkbox" id="accountability"> Accountability</label>
+                    <label><input type="checkbox" id="fairness"> Fairness</label>
+                </div>
+                <button type="submit">Generate Report</button>
+                <button type="button" onclick="addChecklistItem()">Add Item</button>
+            </form>
+        </div>
+        
+        <div class="section">
+            <h2>Guidelines and Resources</h2>
+            <ul id="guidelines-list">
+                <li><a href="https://example.com/guideline1" target="_blank">Data Privacy Guidelines</a></li>
+                <li><a href="https://example.com/guideline2" target="_blank">Bias Mitigation Strategies</a></li>
+                <li><a href="https://example.com/guideline3" target="_blank">Transparency Best Practices</a></li>
+                <li><a href="https://example.com/guideline4" target="_blank">Accountability Framework</a></li>
+                <li><a href="https://example.com/guideline5" target="_blank">Ensuring Fairness</a></li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Audit Trail</h2>
+            <input type="text" id="search-audit" placeholder="Search Audit Trail" oninput="searchAuditTrail()">
+            <ul id="audit-trail">
+                <!-- Audit trail items will be appended here -->
+            </ul>
+            <button onclick="exportAuditTrail('pdf')">Export as PDF</button>
+            <button onclick="exportAuditTrail('text')">Export as Text</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
