@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const checklistForm = document.getElementById('checklist-form');
     const checklistItems = document.getElementById('checklist-items');
     const auditTrail = document.getElementById('audit-trail');
+    const comments = document.getElementById('comments');
 
     checklistForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -18,10 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        const commentsText = comments.value.trim();
+        const timestamp = new Date().toLocaleString();
+
         if (report.length > 0) {
             const listItem = document.createElement('li');
-            listItem.innerHTML = `<strong>Checked Items:</strong> ${report.join(', ')} - <em>${new Date().toLocaleString()}</em>`;
+            listItem.innerHTML = `<strong>Checked Items:</strong> ${report.join(', ')}<br><strong>Comments:</strong> ${commentsText}<br><em>${timestamp}</em>`;
             auditTrail.appendChild(listItem);
+            comments.value = '';  // Clear comments field after submission
         } else {
             alert('Please select at least one item.');
         }
@@ -50,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.exportAuditTrail = function(format) {
-        const content = Array.from(auditTrail.children).map(item => item.innerText).join('\n');
+        const content = Array.from(auditTrail.children).map(item => item.innerText.replace('Remove', '').trim()).join('\n\n');
         
         if (format === 'pdf') {
             const { jsPDF } = window.jspdf;
@@ -61,4 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const blob = new Blob([content], { type: 'text/plain' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'audit
+            link.download = 'audit_trail.txt';
+            link.click();
+        }
+    };
+});
