@@ -61,8 +61,4 @@ document.addEventListener('DOMContentLoaded', () => {
             const blob = new Blob([content], { type: 'text/plain' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'audit_trail.txt';
-            link.click();
-        }
-    };
-});
+            link.download = 'audit
