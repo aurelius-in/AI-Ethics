@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const checklistForm = document.getElementById('checklist-form');
     const checklistItems = document.getElementById('checklist-items');
     const complianceLog = document.getElementById('compliance-log');
     const comments = document.getElementById('comments');
