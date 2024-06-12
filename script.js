@@ -1,7 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const checklistForm = document.getElementById('checklist-form');
     const checklistItems = document.getElementById('checklist-items');
-    const auditTrail = document.getElementById('audit-trail');
+    const complianceLog = document.getElementById('compliance-log');
     const comments = document.getElementById('comments');
 
     checklistForm.addEventListener('submit', (e) => {
@@ -25,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (report.length > 0) {
             const listItem = document.createElement('li');
             listItem.innerHTML = `<strong>Checked Items:</strong> ${report.join(', ')}<br><strong>Comments:</strong> ${commentsText}<br><em>${timestamp}</em>`;
-            auditTrail.appendChild(listItem);
+            complianceLog.appendChild(listItem);
             comments.value = '';  // Clear comments field after submission
         } else {
             alert('Please select at least one item.');
@@ -41,9 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    window.searchAuditTrail = function() {
-        const query = document.getElementById('search-audit').value.toLowerCase();
-        const items = auditTrail.getElementsByTagName('li');
+    window.searchComplianceLog = function() {
+        const query = document.getElementById('search-log').value.toLowerCase();
+        const items = complianceLog.getElementsByTagName('li');
         
         Array.from(items).forEach((item) => {
             if (item.innerText.toLowerCase().includes(query)) {
@@ -54,19 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    window.exportAuditTrail = function(format) {
-        const content = Array.from(auditTrail.children).map(item => item.innerText.replace('Remove', '').trim()).join('\n\n');
+    window.exportComplianceLog = function(format) {
+        const content = Array.from(complianceLog.children).map(item => item.innerText.replace('Remove', '').trim()).join('\n\n');
         
         if (format === 'pdf') {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             doc.text(content, 10, 10);
-            doc.save('audit_trail.pdf');
+            doc.save('compliance_log.pdf');
         } else if (format === 'text') {
             const blob = new Blob([content], { type: 'text/plain' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'audit_trail.txt';
+            link.download = 'compliance_log.txt';
             link.click();
         }
     };
